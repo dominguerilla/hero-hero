@@ -13,7 +13,7 @@ namespace LIMB {
     /// 3. Select a target
     public class Action {
         
-        SkillDefinition skillDefinition;
+        Skill skillDefinition;
         Combatant actor;
         Combatant[] actorParty;
         Combatant[] otherParty;
@@ -21,7 +21,7 @@ namespace LIMB {
         Combatant[] registeredTargets;
         string targetedLimb = null;
 
-        public Action(SkillDefinition actionDefinition, 
+        public Action(Skill actionDefinition, 
             Combatant actor, 
             Combatant[] actorParty = null, Combatant[] otherParty = null) {
 

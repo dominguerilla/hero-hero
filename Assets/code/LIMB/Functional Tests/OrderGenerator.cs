@@ -12,7 +12,7 @@ public class OrderGenerator : MonoBehaviour {
     CombatantData[] actors;
     
     [SerializeField]
-    SkillDefinition[] orders;
+    Skill[] orders;
 
     Combatant[] combatants;
     Action[] generatedActions;
@@ -30,7 +30,7 @@ public class OrderGenerator : MonoBehaviour {
         return combatants;
     }
 
-    Action[] GenerateOrders(Combatant[] actors, SkillDefinition[] definitions){
+    Action[] GenerateOrders(Combatant[] actors, Skill[] definitions){
         if(actors.Length != definitions.Length){
             Debug.LogWarning("Number of actors different than number of definitions!");
         }
@@ -39,7 +39,7 @@ public class OrderGenerator : MonoBehaviour {
         for(int i = 0; i < actors.Length; i++){
             Action action = new Action(definitions[i], actors[i]);
 
-            if(definitions[i].targetType == SkillDefinition.TARGET_TYPE.GROUP){
+            if(definitions[i].targetType == Skill.TARGET_TYPE.GROUP){
                 action.SetTargets(actors);
             }else{
                 int randomTarget = (int)Random.Range(0f, actors.Length-1);

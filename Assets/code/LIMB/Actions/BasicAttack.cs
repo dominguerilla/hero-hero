@@ -7,7 +7,7 @@ namespace LIMB {
     /// Base class for attacks made with equipped weapons.
     /// </summary>
     [CreateAssetMenu(fileName = "New BasicAttack", menuName = "Basic Attack", order = 51)]
-    public class BasicAttack : SkillDefinition {
+    public class BasicAttack : Skill {
 
         public Damage damage;
 
