@@ -12,6 +12,6 @@ namespace LIMB {
         public string Description;
         public int Duration;
         public StatChange[] Buffs;
-        public Damage[] Damage;
+        public Damage[] ProcDamage;
     }
 }

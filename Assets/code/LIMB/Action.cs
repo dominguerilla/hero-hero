@@ -13,7 +13,7 @@ namespace LIMB {
     /// 3. Select a target
     public class Action {
         
-        ActionDefinition actionDefinition;
+        SkillDefinition skillDefinition;
         Combatant actor;
         Combatant[] actorParty;
         Combatant[] otherParty;
@@ -21,11 +21,11 @@ namespace LIMB {
         Combatant[] registeredTargets;
         string targetedLimb = null;
 
-        public Action(ActionDefinition actionDefinition, 
+        public Action(SkillDefinition actionDefinition, 
             Combatant actor, 
             Combatant[] actorParty = null, Combatant[] otherParty = null) {
 
-            this.actionDefinition = actionDefinition;
+            this.skillDefinition = actionDefinition;
             this.actor = actor;
             this.actorParty = actorParty;
             this.otherParty = otherParty;
@@ -39,7 +39,7 @@ namespace LIMB {
         public void SetTargets(params Combatant[] possibleTargets) {
             List<Combatant> validTargets = new List<Combatant>();
             foreach(Combatant target in possibleTargets) {
-               if(actionDefinition.CanTarget(actor, target, actorParty, otherParty)) {
+               if(skillDefinition.CanTarget(actor, target, actorParty, otherParty)) {
                     validTargets.Add(target);
                 } 
             }
@@ -61,7 +61,7 @@ namespace LIMB {
         /// </summary>
         /// Should check if the action is still valid before executing!
         public void ExecuteAction() {
-            actionDefinition.Execute(actorParty, otherParty, actor, registeredTargets, targetedLimb);
+            skillDefinition.Execute(actorParty, otherParty, actor, registeredTargets, targetedLimb);
         }
 
         public string GetTargetedLimb() {
@@ -82,7 +82,7 @@ namespace LIMB {
                 targets += "and " + registeredTargets[registeredTargets.Length - 1].ToString();
             }
 
-            return actor.ToString() + " uses " + actionDefinition.actionName + " on " + targets;
+            return actor.ToString() + " uses " + skillDefinition.actionName + " on " + targets;
         }
     }
 }

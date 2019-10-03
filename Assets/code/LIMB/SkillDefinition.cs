@@ -6,7 +6,7 @@ namespace LIMB {
     /// <summary>
     /// Defines an Action that a combatant performs during a turn.
     /// </summary>
-    public abstract class ActionDefinition : ScriptableObject{
+    public abstract class SkillDefinition : ScriptableObject{
         
         public string actionName;
 
