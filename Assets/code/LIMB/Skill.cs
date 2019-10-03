@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LIMB {
     /// <summary>
-    /// Defines an Action that a combatant performs during a turn.
+    /// Defines a Skill that a combatant performs.
     /// </summary>
     public abstract class Skill : ScriptableObject{
         

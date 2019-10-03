@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LIMB {
     /// <summary>
-    /// Uses an ActionDefinition and specified Combatant to start building an Action, which has a target.
+    /// Uses a Skill and specified Combatant to start building an Action, which has target(s).
     /// </summary>
     /// When Actions are performed, all buffs should have already been applied to all characters.
     /// Three phases of selecting an Action:
@@ -13,59 +13,13 @@ namespace LIMB {
     /// 3. Select a target
     public class Action {
         
-        Skill skillDefinition;
+        Skill skill;
         Combatant actor;
-        Combatant[] actorParty;
-        Combatant[] otherParty;
-
         Combatant[] registeredTargets;
-        string targetedLimb = null;
 
-        public Action(Skill actionDefinition, 
-            Combatant actor, 
-            Combatant[] actorParty = null, Combatant[] otherParty = null) {
-
-            this.skillDefinition = actionDefinition;
+        public Action(Skill skill, Combatant actor) {
+            this.skill = skill;
             this.actor = actor;
-            this.actorParty = actorParty;
-            this.otherParty = otherParty;
-        }
-
-        /// <summary>
-        /// For ActionDefinitions with targetType set to GROUP, this would be called with the targeted party.
-        /// For ActionDefinitions with targetType set to SINGLE, this would be called only with the single target.
-        /// </summary>
-        /// <param name="possibleTargets"></param>
-        public void SetTargets(params Combatant[] possibleTargets) {
-            List<Combatant> validTargets = new List<Combatant>();
-            foreach(Combatant target in possibleTargets) {
-               if(skillDefinition.CanTarget(actor, target, actorParty, otherParty)) {
-                    validTargets.Add(target);
-                } 
-            }
-
-            registeredTargets = validTargets.ToArray();    
-        }
-
-        /// <summary>
-        /// Target a specific limb. This assumes that the specified limb exists on the targeted combatant.
-        /// If the target type is group, assumes that limb is present in all registered targets.
-        /// </summary>
-        /// <param name="limbName"></param>
-        public void SetTargetLimb(string limbName) {
-            this.targetedLimb = limbName;
-        }
-
-        /// <summary>
-        /// Uses ActionDefinition.Execute() to execute action. Called during the Action phase one at a time.
-        /// </summary>
-        /// Should check if the action is still valid before executing!
-        public void ExecuteAction() {
-            skillDefinition.Execute(actorParty, otherParty, actor, registeredTargets, targetedLimb);
-        }
-
-        public string GetTargetedLimb() {
-            return this.targetedLimb;
         }
 
         public override string ToString() {
@@ -82,7 +36,7 @@ namespace LIMB {
                 targets += "and " + registeredTargets[registeredTargets.Length - 1].ToString();
             }
 
-            return actor.ToString() + " uses " + skillDefinition.actionName + " on " + targets;
+            return actor.ToString() + " uses " + skill.actionName + " on " + targets;
         }
     }
 }
