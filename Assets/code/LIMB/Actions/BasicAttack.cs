@@ -18,10 +18,8 @@ namespace LIMB {
             return false;
         }
 
-        public override void Execute(Combatant[] actorParty, Combatant[] enemyParty, Combatant actor, Combatant[] targets, string limbName = null) {
-            foreach(Combatant target in targets) {
-                target.InflictDamage(damage, limbName);
-            }
+        public override void Execute(Combatant actor, Combatant target) {
+            target.InflictDamage(damage);
         }
     }
 }

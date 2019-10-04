@@ -9,15 +9,17 @@ public class MockSkill : Skill {
     
     public delegate bool canBeCastFunc(Combatant actor, Combatant[] actorParty = null, Combatant[] enemyParty = null);
     public delegate bool canTargetFunc(Combatant actor, Combatant target, Combatant[] actorParty = null, Combatant[] enemyParty = null);
+    public delegate void executeFunc(Combatant actor, Combatant target);
 
     public canBeCastFunc canBeCast;
     public canTargetFunc canTarget;
+    public executeFunc execute;
 
     public override bool CanBeCast(Combatant actor, Combatant[] actorParty = null, Combatant[] enemyParty = null) {
         if(canBeCast != null) {
             return canBeCast.Invoke(actor, actorParty, enemyParty);
         }else {
-            return false;
+            return true;
         }
     }
 
@@ -25,11 +27,13 @@ public class MockSkill : Skill {
         if(canTarget != null) {
             return canTarget.Invoke(actor, target, actorParty, enemyParty);
         }else {
-            return false;
+            return true;
         }
     }
 
-    public override void Execute(Combatant[] actorParty, Combatant[] enemyParty, Combatant actor, Combatant[] targets, string targetLimb = null) {
-        return;
+    public override void Execute(Combatant actor, Combatant target) {
+        if(execute != null) {
+            execute.Invoke(actor,target);
+        }
     }
 }

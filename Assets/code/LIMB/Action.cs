@@ -4,22 +4,27 @@ using UnityEngine;
 
 namespace LIMB {
     /// <summary>
-    /// Uses a Skill and specified Combatant to start building an Action, which has target(s).
+    /// Uses a Combatant, Skill, and expected Combatant targets to build an Action that may or may not succeed.
     /// </summary>
     /// When Actions are performed, all buffs should have already been applied to all characters.
-    /// Three phases of selecting an Action:
-    /// 1. Select an actor
-    /// 2. Select an Action
-    /// 3. Select a target
     public class Action {
         
         Skill skill;
         Combatant actor;
         Combatant[] registeredTargets;
 
-        public Action(Skill skill, Combatant actor) {
+        public Action(Combatant actor, Skill skill, params Combatant[] registeredTargets) {
             this.skill = skill;
             this.actor = actor;
+            this.registeredTargets = registeredTargets;
+        }
+
+        public void Execute() {
+            foreach(Combatant target in registeredTargets) {
+                if(skill.CanTarget(actor, target)) {
+                    skill.Execute(actor, target);
+                }
+            }
         }
 
         public override string ToString() {

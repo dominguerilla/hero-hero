@@ -44,6 +44,7 @@ namespace LIMB {
                 case Damage.TYPE.BLUNT:
                 case Damage.TYPE.SLASH:
                 case Damage.TYPE.STAB:
+                case Damage.TYPE.NONE:
                     return STAT.PHYS_DEF;
                 default:
                     throw new System.MissingFieldException("Damage type " + type.ToString() + " has no resistance.");

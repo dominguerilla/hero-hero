@@ -39,6 +39,14 @@ namespace LIMB {
             this.currentHealth = combatantData.GetStat(Stats.STAT.HP);
         }
 
+        /// <summary>
+        /// Used for testing.
+        /// </summary>
+        public Combatant() {
+            this.combatantData = ScriptableObject.CreateInstance<CombatantData>();
+            this.currentHealth = 100;
+        }
+
 
         // Used to initialize the component fields of this combatant with what's found in the combatantGO
         public void InitializeCombatantComponents() {

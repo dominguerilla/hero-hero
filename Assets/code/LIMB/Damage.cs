@@ -49,6 +49,13 @@ namespace LIMB {
 
         }
 
+        public Damage(float flatDamage) {
+            this.timing = TIMING.INSTANT;
+            this.type = TYPE.NONE;
+            this.magnitude = MAGNITUDE.FLAT;
+            this.flatDamage = flatDamage;
+        }
+
         public Damage(TIMING timing, TYPE type, MAGNITUDE mag, float flatDamage = 0.0f) {
             this.timing = timing;
             this.type = type;

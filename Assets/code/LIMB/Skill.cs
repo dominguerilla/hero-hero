@@ -65,8 +65,7 @@ namespace LIMB {
         /// Change the state of the actor/target combatants. 
         /// Do the damage calculation here.
         /// </summary>
-        public abstract void Execute(Combatant[] actorParty, Combatant[] enemyParty,
-                                        Combatant actor, Combatant[] targets, string targetLimb = null);    
+        public abstract void Execute(Combatant actor, Combatant target);
         
     }
 }
