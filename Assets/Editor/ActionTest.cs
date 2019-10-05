@@ -31,5 +31,20 @@ namespace Tests
             Assert.Less(goblin.GetCurrentHealth(), startingHealth);            
         }
 
+        [Test]
+        public void HeroCantTargetEnemy() {
+            Combatant hero = new Combatant();
+            Combatant enemy = new Combatant();
+            MockSkill finisher_move = ScriptableObject.CreateInstance<MockSkill>();
+            finisher_move.canTarget = (actor, target, x, y) => { return false; };
+            // This shouldn't execute.
+            finisher_move.execute = (actor, target) => { target.InflictDamage(new Damage(100f)); };
+
+            Action finisher = new Action(hero, finisher_move, enemy);
+            float startingHealth = enemy.GetCurrentHealth();
+            finisher.Execute();
+            Assert.AreEqual(startingHealth, enemy.GetCurrentHealth());
+        }
+
     }
 }
