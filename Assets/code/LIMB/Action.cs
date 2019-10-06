@@ -13,6 +13,10 @@ namespace LIMB {
         Combatant actor;
         Combatant[] registeredTargets;
 
+        public Action() {
+
+        }
+
         public Action(Combatant actor, Skill skill, params Combatant[] registeredTargets) {
             this.skill = skill;
             this.actor = actor;
