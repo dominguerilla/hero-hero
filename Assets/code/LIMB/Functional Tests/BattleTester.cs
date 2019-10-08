@@ -7,8 +7,6 @@ public class BattleTester : MonoBehaviour {
     public bool DebugMode;
 
     [SerializeField]
-    GameObject battleScenePrefab;
-    [SerializeField]
     NPCParty leftParty;
     [SerializeField]
     NPCParty rightParty;
@@ -20,7 +18,7 @@ public class BattleTester : MonoBehaviour {
     }
 
     public void StartBattle(){
-        bManager.StartBattle(leftParty, rightParty, battleScenePrefab);
+        bManager.StartBattle(leftParty, rightParty);
     }
 
     public void EndBattle(){
