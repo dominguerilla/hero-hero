@@ -7,6 +7,7 @@ namespace LIMB {
     {
         List<Action> currentRound;
         int roundCount;
+        NPCParty partyA, partyB;
 
         public Battle() {
             currentRound = new List<Action>();
@@ -17,7 +18,7 @@ namespace LIMB {
             this.roundCount++;
         }
 
-        public void AddRounds(params Action[] actions) {
+        public void AddActions(params Action[] actions) {
             this.currentRound.AddRange(actions);
         }
 

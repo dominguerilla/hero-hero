@@ -24,6 +24,12 @@ namespace LIMB {
         [SerializeField]
         List<Limb> anatomy;
 
+        /// <summary>
+        /// Skills that this type of creature starts with.
+        /// </summary>
+        [SerializeField]
+        List<Skill> innateSkills;
+
         private void OnEnable() {
             this.baseStats = new List<StatValue>();
             this.anatomy = new List<Limb>();

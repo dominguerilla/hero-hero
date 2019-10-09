@@ -23,7 +23,7 @@ namespace Tests
             Battle battle = new Battle();
             Action action1 = new Action(), action2 = new Action(), action3 = new Action();
             Assert.AreEqual(0, battle.GetRoundLength());
-            battle.AddRounds(action1, action2, action3);
+            battle.AddActions(action1, action2, action3);
             Assert.AreEqual(3, battle.GetRoundLength());
             battle.ExecuteRound();
             Assert.AreEqual(0, battle.GetRoundLength());

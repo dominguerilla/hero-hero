@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace LIMB {
     public class BattleManager : MonoBehaviour {
-        
-        Battle battle;
+
+        List<Action> currentRound;
+        int roundCount;
         bool inBattle;
         Combatant[] lCombatants, rCombatants;
 
         private void Awake() {
+            currentRound = new List<Action>();
         }
 
         public void StartBattle(NPCParty leftParty, NPCParty rightParty){
@@ -30,7 +32,31 @@ namespace LIMB {
                 rCombatants = null;
             }
         }
+        
+        public void ExecuteRound() {
+            this.currentRound.Clear();
+            this.roundCount++;
+        }
 
+        public void AddActions(params Action[] actions) {
+            this.currentRound.AddRange(actions);
+        }
+
+        /// <summary>
+        /// Return the number of rounds that have gone by.
+        /// </summary>
+        /// <returns></returns>
+        public int GetRoundCount() {
+            return roundCount;
+        }
+
+        /// <summary>
+        /// Return the number of Actions in the current round.
+        /// </summary>
+        /// <returns></returns>
+        public int GetRoundLength() {
+            return currentRound.Count;
+        }
         Combatant[] GenerateCombatants(NPCParty party){
             CombatantData[] data = party.GetData();
             Combatant[] combatants = new Combatant[data.Length];
