@@ -29,26 +29,25 @@ public class ActionBuilderUI : MonoBehaviour
 
     [SerializeField]
     SkillListerUI skillLister;
-
+    /*
     [SerializeField]
     TargetListerUI targetLister;
-
+    */
     // Start is called before the first frame update
     void Start()
     {
         currentCombatant = new Combatant();
         currentTarget = new Combatant();
-        EnqueueAction(); 
     }
 
     public void DisplaySkills() {
         skillLister.ListSkills(currentCombatant);
     }
-
+    /*
     public void DisplayTargets() {
         targetLister.ListTargets(currentSkill);
     }
-
+    */
     public void EnqueueAction() {
         Action action = new Action(currentCombatant, currentSkill, currentTarget);
         Debug.Log("Enqueued Action: " + action.ToString());

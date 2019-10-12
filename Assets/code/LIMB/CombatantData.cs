@@ -106,6 +106,10 @@ namespace LIMB {
             this.baseStats = new List<StatValue>(stats);
         }
 
+        public List<Skill> GetSkills(){
+            return this.innateSkills;
+        }
+
         
     }
 }

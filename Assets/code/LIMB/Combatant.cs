@@ -163,5 +163,9 @@ namespace LIMB {
         public override string ToString() {
             return combatantData.GetName();
         }
+
+        public List<Skill> GetSkills(){
+            return this.combatantData.GetSkills();
+        }
     }
 }
