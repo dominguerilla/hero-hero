@@ -29,6 +29,10 @@ public class SkillListerUI : MonoBehaviour
     {
     }
 
+    /// <summary>
+    /// Creates Buttons for the first four skills that the Combatant has.
+    /// </summary>
+    /// <param name="combatant"></param>
     public void ListSkills(Combatant combatant){
         currentSkills = combatant.GetSkills();
         int skillNum = Mathf.Min(4, currentSkills.Count);

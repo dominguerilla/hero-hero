@@ -26,7 +26,6 @@ public class ActionBuilderUI : MonoBehaviour
     /// </summary>
     public Combatant currentTarget;
 
-
     [SerializeField]
     SkillListerUI skillLister;
     /*
