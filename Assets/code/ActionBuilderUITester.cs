@@ -29,10 +29,13 @@ public class ActionBuilderUITester : MonoBehaviour
         }
         Debug.Log("ActionBuilderUI found in " + ui.gameObject);
     }
+    
+    public void DisplaySkills(){
+        ui.currentCombatant = new Combatant(currentCombatant);
+        ui.DisplaySkills();
+    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void ClearSkills(){
+        ui.ClearSkills();
     }
 }

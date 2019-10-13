@@ -35,13 +35,16 @@ public class ActionBuilderUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentCombatant = new Combatant();
-        currentTarget = new Combatant();
     }
 
     public void DisplaySkills() {
         skillLister.ListSkills(currentCombatant);
     }
+
+    public void ClearSkills(){
+        skillLister.Clear();
+    }
+
     /*
     public void DisplayTargets() {
         targetLister.ListTargets(currentSkill);
