@@ -9,10 +9,14 @@ public class SkillButton : MonoBehaviour
     [SerializeField]
     Skill skill;
 
+    // Don't think this is the best way to do it...
+    // maybe inject this into SkillButton instead?
+    ActionBuilderUI ui;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ui = GameObject.FindObjectOfType<ActionBuilderUI>();    
     }
 
     // Update is called once per frame
@@ -29,6 +33,10 @@ public class SkillButton : MonoBehaviour
 
     public Skill GetSkill(){
         return this.skill;
+    }
+
+    public void SetActionBuilderUISkill(){
+        ui.SelectSkill(skill);
     }
 
 }

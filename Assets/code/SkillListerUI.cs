@@ -58,6 +58,8 @@ public class SkillListerUI : MonoBehaviour
             SkillButton skillButton = PopSkillButton();
             if(skillButton){
                 skillButton.SetSkill(currentSkills[i]);
+                Button buttonComponent = skillButton.gameObject.GetComponent<Button>();
+                buttonComponent.onClick.AddListener(skillButton.SetActionBuilderUISkill);
                 skillButton.gameObject.SetActive(true);
             }else{
                 Debug.LogError("Out of SkillButtons from pool!");
@@ -67,8 +69,11 @@ public class SkillListerUI : MonoBehaviour
 
     public void Clear(){
         foreach(SkillButton button in activeButtons){
+            button.gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
             button.gameObject.SetActive(false);
+            skillButtonPool.Push(button);
         }
+        activeButtons.Clear();
     }
 
     SkillButton PopSkillButton(){
