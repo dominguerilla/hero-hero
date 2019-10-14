@@ -52,7 +52,7 @@ public class SkillListerUI : MonoBehaviour
     /// <param name="combatant"></param>
     public void ListSkills(Combatant combatant){
         currentSkills = combatant.GetSkills();
-        int skillNum = Mathf.Min(4, currentSkills.Count);
+        int skillNum = Mathf.Min(MAX_SKILL_NUM, currentSkills.Count);
         
         for(int i = 0; i < skillNum; i++){
             SkillButton skillButton = PopSkillButton();

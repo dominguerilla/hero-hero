@@ -18,3 +18,7 @@ MonoBehaviour:
   anatomy: []
   innateSkills:
   - {fileID: 11400000, guid: 8bd02fadc9bc56549867613d2b2dd0ce, type: 2}
+  - {fileID: 11400000, guid: 8bd02fadc9bc56549867613d2b2dd0ce, type: 2}
+  - {fileID: 11400000, guid: 8bd02fadc9bc56549867613d2b2dd0ce, type: 2}
+  - {fileID: 11400000, guid: 8bd02fadc9bc56549867613d2b2dd0ce, type: 2}
+  - {fileID: 11400000, guid: 8bd02fadc9bc56549867613d2b2dd0ce, type: 2}
