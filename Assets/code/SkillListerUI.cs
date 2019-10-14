@@ -16,6 +16,7 @@ public class SkillListerUI : MonoBehaviour
     /// To see more Skills than that, you will need to scroll 4 Skills at a time.
     /// This might get annoying when you have 20+ skills though...
     /// 
+    private static int MAX_SKILL_NUM = 4;
     
     /// <summary>
     /// The UI Button prefab that represents a Skill.
@@ -24,9 +25,25 @@ public class SkillListerUI : MonoBehaviour
     GameObject skillButtonPrefab;
 
     List<Skill> currentSkills;
-    
+    Stack<SkillButton> skillButtonPool;
+    List<SkillButton> activeButtons;
+
     void Start()
     {
+        skillButtonPool = new Stack<SkillButton>();
+        activeButtons = new List<SkillButton>();
+        for(int i = 0; i < MAX_SKILL_NUM; i++){
+            GameObject button = GameObject.Instantiate<GameObject>(skillButtonPrefab);
+            button.transform.SetParent(this.transform);
+
+            SkillButton skillButton = button.GetComponent<SkillButton>();
+            if(!skillButton){
+                Debug.LogError("No SkillButton component found in skillButtonPrefab.");
+                return;
+            }
+            skillButton.gameObject.SetActive(false);
+            skillButtonPool.Push(skillButton);
+        }
     }
 
     /// <summary>
@@ -38,16 +55,25 @@ public class SkillListerUI : MonoBehaviour
         int skillNum = Mathf.Min(4, currentSkills.Count);
         
         for(int i = 0; i < skillNum; i++){
-            GameObject button = GameObject.Instantiate<GameObject>(skillButtonPrefab);
-            button.transform.SetParent(this.transform);
-            Text buttonText = button.GetComponentInChildren<Text>();
-            buttonText.text = currentSkills[i].actionName;
+            SkillButton skillButton = PopSkillButton();
+            if(skillButton){
+                skillButton.SetSkill(currentSkills[i]);
+                skillButton.gameObject.SetActive(true);
+            }else{
+                Debug.LogError("Out of SkillButtons from pool!");
+            }
         }
     }
 
     public void Clear(){
-        for(int i = transform.childCount - 1; i >= 0; i--){
-            Destroy(transform.GetChild(i).gameObject);
+        foreach(SkillButton button in activeButtons){
+            button.gameObject.SetActive(false);
         }
+    }
+
+    SkillButton PopSkillButton(){
+        SkillButton button = skillButtonPool.Pop();
+        activeButtons.Add(button);
+        return button;   
     }
 }

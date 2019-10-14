@@ -45,6 +45,10 @@ public class ActionBuilderUI : MonoBehaviour
         skillLister.Clear();
     }
 
+    public void SelectSkill(Skill skill){
+        this.currentSkill = skill;
+    }
+
     /*
     public void DisplayTargets() {
         targetLister.ListTargets(currentSkill);
