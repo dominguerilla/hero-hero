@@ -8,7 +8,7 @@ namespace LIMB {
         List<Action> currentRound;
         int roundCount;
         bool inBattle;
-        Combatant[] lCombatants, rCombatants;
+        List<Combatant> lCombatants, rCombatants;
 
         private void Awake() {
             currentRound = new List<Action>();
@@ -57,22 +57,22 @@ namespace LIMB {
         public int GetRoundLength() {
             return currentRound.Count;
         }
-        Combatant[] GenerateCombatants(NPCParty party){
+
+        List<Combatant> GenerateCombatants(NPCParty party){
             CombatantData[] data = party.GetData();
-            Combatant[] combatants = new Combatant[data.Length];
-            for (int i = 0; i < combatants.Length; i++){
-                
-                Combatant combatant = new Combatant(data[i]);
-                combatants[i] = combatant;
+            List<Combatant> combatants = new List<Combatant>();
+            foreach(CombatantData c in data){
+                combatants.Add(new Combatant(c));
             }
+                
             return combatants;
         }
 
-        public Combatant[] GetLeftCombatants() {
+        public List<Combatant> GetLeftCombatants() {
             return this.lCombatants;
         }
 
-        public Combatant[] GetRightCombatants() {
+        public List<Combatant> GetRightCombatants() {
             return this.rCombatants;
         }
     }
