@@ -14,7 +14,7 @@ public class BattleTester : MonoBehaviour {
     BattleManager bManager;
 
     private void Awake() {
-        bManager = GetComponent<BattleManager>();    
+        bManager = GameObject.FindObjectOfType<BattleManager>();    
     }
 
     public void StartBattle(){
