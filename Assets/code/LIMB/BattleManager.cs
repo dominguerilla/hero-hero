@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,9 @@ namespace LIMB {
         bool inBattle;
         List<Combatant> lCombatants, rCombatants;
 
+        // Sorted by descending SPEED.
+        IEnumerable<Combatant> allCombatants;
+
         private void Awake() {
             currentRound = new List<Action>();
         }
@@ -19,6 +22,9 @@ namespace LIMB {
                 inBattle = true;
                 lCombatants = GenerateCombatants(leftParty);
                 rCombatants = GenerateCombatants(rightParty);
+
+                allCombatants = lCombatants.Concat<Combatant>(rCombatants);
+                allCombatants.OrderByDescending(c => c.GetRawStat(Stats.STAT.SPEED));
 
                 Debug.Log("Battle started!");
             }
@@ -30,6 +36,7 @@ namespace LIMB {
                 Debug.Log("Battle ended!");
                 lCombatants = null;
                 rCombatants = null;
+                allCombatants = null;
             }
         }
         
