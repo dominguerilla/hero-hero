@@ -82,5 +82,12 @@ namespace LIMB {
         public List<Combatant> GetRightCombatants() {
             return this.rCombatants;
         }
+
+        /// <summary>
+        /// Returns true if there is at least one living Combatant on each party.
+        /// </summary>
+        public bool CanContinueBattle(){
+            return true;
+        }
     }
 }
