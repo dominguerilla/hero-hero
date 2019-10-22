@@ -11,7 +11,7 @@ namespace LIMB {
         List<Combatant> lCombatants, rCombatants;
 
         // Sorted by descending SPEED.
-        IEnumerable<Combatant> allCombatants;
+        Queue<Combatant> allCombatants;
 
         private void Awake() {
             currentRound = new List<Action>();
@@ -23,9 +23,13 @@ namespace LIMB {
                 lCombatants = GenerateCombatants(leftParty);
                 rCombatants = GenerateCombatants(rightParty);
 
-                allCombatants = lCombatants.Concat<Combatant>(rCombatants);
-                allCombatants.OrderByDescending(c => c.GetRawStat(Stats.STAT.SPEED));
-
+                IEnumerable<Combatant> sortedCombatants = lCombatants.Concat<Combatant>(rCombatants);
+                sortedCombatants = sortedCombatants.OrderByDescending(c => c.GetRawStat(Stats.STAT.SPEED));
+                allCombatants = new Queue<Combatant>(sortedCombatants);
+                
+                foreach(Combatant c in allCombatants){
+                    Debug.Log(c + "; SPEED " + c.GetRawStat(Stats.STAT.SPEED));
+                }
                 Debug.Log("Battle started!");
             }
         }
@@ -82,7 +86,7 @@ namespace LIMB {
         public List<Combatant> GetRightCombatants() {
             return this.rCombatants;
         }
-
+        
         /// <summary>
         /// Returns true if there is at least one living Combatant on each party.
         /// </summary>

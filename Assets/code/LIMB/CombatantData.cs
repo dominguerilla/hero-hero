@@ -30,11 +30,6 @@ namespace LIMB {
         [SerializeField]
         List<Skill> innateSkills;
 
-        private void OnEnable() {
-            this.baseStats = new List<StatValue>();
-            this.anatomy = new List<Limb>();
-        }
-
         /// <summary>
         /// To initialize data after using ScriptableObject.CreateInstance to create this.
         /// </summary>
