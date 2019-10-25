@@ -27,7 +27,7 @@ public class ActionBuilderUI : MonoBehaviour
     public Combatant currentTarget;
 
     [SerializeField]
-    SkillListerUI skillLister;
+    ButtonLister skillLister;
     /*
     [SerializeField]
     TargetListerUI targetLister;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 using LIMB;
 using UnityEngine.UI;
-public class SkillButton : MonoBehaviour
+public class SelectionButton : MonoBehaviour
 {
     [SerializeField]
     Skill skill;

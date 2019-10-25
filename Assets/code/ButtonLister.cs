@@ -7,42 +7,42 @@ using LIMB;
 
 
 /// <summary>
-/// Populates a UI Panel with UI Buttons representing a single Skill.
+/// Populates a UI Panel with UI Buttons representing an object.
 /// </summary>
-public class SkillListerUI : MonoBehaviour
+public class ButtonLister : MonoBehaviour
 {
     ///
-    /// I'm thinking of showing only 4 Skills at a time.
-    /// To see more Skills than that, you will need to scroll 4 Skills at a time.
-    /// This might get annoying when you have 20+ skills though...
+    /// I'm thinking of showing only 4 buttons at a time.
+    /// To see more buttons than that, you will need to scroll 4 buttons at a time.
+    /// This might get annoying when you have 20+ objects though...
     /// 
-    private static int MAX_SKILL_NUM = 4;
+    private static int MAX_BUTTON_NUM = 4;
     
     /// <summary>
     /// The UI Button prefab that represents a Skill.
     /// </summary>
     [SerializeField]
-    GameObject skillButtonPrefab;
+    GameObject buttonPrefab;
 
     List<Skill> currentSkills;
-    Stack<SkillButton> skillButtonPool;
-    List<SkillButton> activeButtons;
+    Stack<SelectionButton> buttonObjectPool;
+    List<SelectionButton> activeButtons;
 
     void Start()
     {
-        skillButtonPool = new Stack<SkillButton>();
-        activeButtons = new List<SkillButton>();
-        for(int i = 0; i < MAX_SKILL_NUM; i++){
-            GameObject button = GameObject.Instantiate<GameObject>(skillButtonPrefab);
+        buttonObjectPool = new Stack<SelectionButton>();
+        activeButtons = new List<SelectionButton>();
+        for(int i = 0; i < MAX_BUTTON_NUM; i++){
+            GameObject button = GameObject.Instantiate<GameObject>(buttonPrefab);
             button.transform.SetParent(this.transform);
 
-            SkillButton skillButton = button.GetComponent<SkillButton>();
-            if(!skillButton){
-                Debug.LogError("No SkillButton component found in skillButtonPrefab.");
+            SelectionButton objButton = button.GetComponent<SelectionButton>();
+            if(!objButton){
+                Debug.LogError("No SelectionButton component found in skillButtonPrefab.");
                 return;
             }
-            skillButton.gameObject.SetActive(false);
-            skillButtonPool.Push(skillButton);
+            objButton.gameObject.SetActive(false);
+            buttonObjectPool.Push(objButton);
         }
     }
 
@@ -52,10 +52,10 @@ public class SkillListerUI : MonoBehaviour
     /// <param name="combatant"></param>
     public void ListSkills(Combatant combatant){
         currentSkills = combatant.GetSkills();
-        int skillNum = Mathf.Min(MAX_SKILL_NUM, currentSkills.Count);
+        int skillNum = Mathf.Min(MAX_BUTTON_NUM, currentSkills.Count);
         
         for(int i = 0; i < skillNum; i++){
-            SkillButton skillButton = PopSkillButton();
+            SelectionButton skillButton = PopSkillButton();
             if(skillButton){
                 skillButton.SetSkill(currentSkills[i]);
                 Button buttonComponent = skillButton.gameObject.GetComponent<Button>();
@@ -68,16 +68,16 @@ public class SkillListerUI : MonoBehaviour
     }
 
     public void Clear(){
-        foreach(SkillButton button in activeButtons){
+        foreach(SelectionButton button in activeButtons){
             button.gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
             button.gameObject.SetActive(false);
-            skillButtonPool.Push(button);
+            buttonObjectPool.Push(button);
         }
         activeButtons.Clear();
     }
 
-    SkillButton PopSkillButton(){
-        SkillButton button = skillButtonPool.Pop();
+    SelectionButton PopSkillButton(){
+        SelectionButton button = buttonObjectPool.Pop();
         activeButtons.Add(button);
         return button;   
     }
