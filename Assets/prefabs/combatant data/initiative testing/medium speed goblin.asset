@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
   m_Name: medium speed goblin
   m_EditorClassIdentifier: 
-  combatantName: 
+  combatantName: medium speed goblin
   modelPrefab: {fileID: 0}
   baseStats: []
   anatomy: []

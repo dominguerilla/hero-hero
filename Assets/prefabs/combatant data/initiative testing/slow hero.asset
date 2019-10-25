@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
-  m_Name: hero
+  m_Name: slow hero
   m_EditorClassIdentifier: 
-  combatantName: 
+  combatantName: slow hero
   modelPrefab: {fileID: 0}
-  baseStats: []
+  baseStats:
+  - Stat: 4
+    Value: 7
   anatomy: []
   innateSkills: []

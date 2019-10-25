@@ -12,6 +12,7 @@ namespace LIMB {
 
         // Sorted by descending SPEED.
         Queue<Combatant> allCombatants;
+        Combatant currentCombatant;
 
         private void Awake() {
             currentRound = new List<Action>();
@@ -41,6 +42,7 @@ namespace LIMB {
                 lCombatants = null;
                 rCombatants = null;
                 allCombatants = null;
+                currentCombatant = null;
             }
         }
         
@@ -79,6 +81,18 @@ namespace LIMB {
             return combatants;
         }
 
+        public Combatant GetNextCombatant(){
+            if(!inBattle){
+                Debug.LogError("Not in battle!");
+                return null;
+            }
+            if(currentCombatant != null){
+                allCombatants.Enqueue(currentCombatant);
+            }
+            currentCombatant = allCombatants.Dequeue();
+            return currentCombatant;
+        }
+
         public List<Combatant> GetLeftCombatants() {
             return this.lCombatants;
         }
@@ -91,7 +105,7 @@ namespace LIMB {
         /// Returns true if there is at least one living Combatant on each party.
         /// </summary>
         public bool CanContinueBattle(){
-            return true;
+            return inBattle && true;
         }
     }
 }

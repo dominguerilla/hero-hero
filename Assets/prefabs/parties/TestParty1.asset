@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: TestParty1
   m_EditorClassIdentifier: 
   members:
-  - {fileID: 11400000, guid: 60e7757e347baab438fa7d1b867d55f3, type: 2}
+  - {fileID: 11400000, guid: 632b13fc05ccaaa4da0bd42261479ba6, type: 2}
+  - {fileID: 11400000, guid: 56dff5a7509005945ba56768dfcfe1f6, type: 2}
