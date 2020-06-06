@@ -27,29 +27,40 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E)){
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, maxInteractionDistance)){
-                Transform objectHit = hit.transform;
-
-                ItemComponent item = objectHit.GetComponent<ItemComponent>();
-                if (item){
-                    inventory.Add(item.gameObject);
-                }
-            }
+            PickUp();
         }else if(Input.GetKeyDown(KeyCode.R)){
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Drop();
+        }
+    }
 
-            //TODO: Can only drop if mouse is on something
-            //TODO: One can drop an item through a wall/object
-            if (Physics.Raycast(ray, out hit)){
-                Vector3 position = (hit.point - transform.position).normalized;
-                this.inventory.Drop(transform.position + position);
+    void PickUp()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, maxInteractionDistance))
+        {
+            Transform objectHit = hit.transform;
+
+            ItemComponent item = objectHit.GetComponent<ItemComponent>();
+            if (item)
+            {
+                inventory.Add(item.gameObject);
             }
         }
     }
 
-    
+    void Drop()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        //TODO: Can only drop if mouse is on something
+        //TODO: One can drop an item through a wall/object
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 position = (hit.point - transform.position).normalized;
+            this.inventory.Drop(transform.position + position);
+        }
+    }
 }
