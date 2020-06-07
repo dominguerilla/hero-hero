@@ -305,6 +305,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxInteractionDistance: 2
   maxDropDistance: 2
+  arms:
+  - {fileID: 2040564741}
+  - {fileID: 203454024}
 --- !u!114 &720835862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +426,7 @@ GameObject:
   - component: {fileID: 203454027}
   - component: {fileID: 203454026}
   m_Layer: 0
-  m_Name: Hand (1)
+  m_Name: Right Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +505,7 @@ GameObject:
   - component: {fileID: 2040564744}
   - component: {fileID: 2040564743}
   m_Layer: 0
-  m_Name: Hand
+  m_Name: Left Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
