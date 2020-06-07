@@ -269,6 +269,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9590a6fdb4a483f45a31dafa7801ca08, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4940be460041f38459f8f92c6b8ec365, type: 3}
+--- !u!4 &203454024 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 203454024, guid: c322fade1a47f1548b6c7484c30f6ecc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2131247222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +864,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &2040564741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2040564741, guid: c322fade1a47f1548b6c7484c30f6ecc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2131247222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2131247222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,6 +924,26 @@ PrefabInstance:
     - target: {fileID: 400000, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 203454023, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}
+      propertyPath: m_Name
+      value: Right Hand
+      objectReference: {fileID: 0}
+    - target: {fileID: 720835861, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}
+      propertyPath: arms.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 720835861, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}
+      propertyPath: arms.Array.data[0]
+      value: 
+      objectReference: {fileID: 2040564741}
+    - target: {fileID: 720835861, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}
+      propertyPath: arms.Array.data[1]
+      value: 
+      objectReference: {fileID: 203454024}
+    - target: {fileID: 2040564740, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}
+      propertyPath: m_Name
+      value: Left Hand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c322fade1a47f1548b6c7484c30f6ecc, type: 3}

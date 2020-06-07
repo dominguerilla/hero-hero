@@ -10,12 +10,20 @@ public class Interactor : MonoBehaviour
     public float maxInteractionDistance = 2f;
     public float maxDropDistance = 2f;
 
+    [SerializeField] Transform[] arms;
+    Vector3[] originalArmPositions;
+    Camera cam;
     InventoryComponent inventory;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        inventory = this.GetComponent<InventoryComponent>();    
+        inventory = GetComponent<InventoryComponent>();
+        cam = Camera.main;
+        originalArmPositions = new Vector3[arms.Length];
+        for (int i = 0; i < arms.Length; i++)
+        {
+            originalArmPositions[i] = arms[i].localPosition;
+        }
     }
 
     void OnGUI()
@@ -26,10 +34,33 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetMouseInput();
         if(Input.GetKeyDown(KeyCode.E)){
             PickUp();
         }else if(Input.GetKeyDown(KeyCode.R)){
             Drop();
+        }
+    }
+
+    void GetMouseInput()
+    {
+        Vector3 direction = cam.transform.forward;
+        if (Input.GetMouseButtonDown(0))
+        {
+            arms[0].position += direction;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            arms[0].localPosition = originalArmPositions[0];
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            arms[1].position += direction;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            arms[1].localPosition = originalArmPositions[1];
         }
     }
 
