@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class ItemComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Rigidbody rb;
+
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody>();    
+    }
+    public void Freeze()
+    {
+        if (rb)
+        {
+            rb.isKinematic = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Unfreeze()
     {
-        
+        if (rb)
+        {
+            rb.isKinematic = false;
+        }
     }
 }

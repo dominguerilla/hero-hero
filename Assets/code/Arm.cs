@@ -1,0 +1,32 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Arm : MonoBehaviour
+{
+    [SerializeField] Transform heldItemPosition;
+
+    ItemComponent heldItem;
+
+    public Transform GetItemPosition()
+    {
+        return heldItemPosition;
+    }
+
+    public void Hold(ItemComponent item)
+    {
+        heldItem = item;
+        item.Freeze();
+        item.transform.parent = heldItemPosition;
+        item.transform.localPosition = Vector3.zero;
+    }
+
+    public void Drop()
+    {
+        if (heldItem)
+        {
+            heldItem.transform.parent = null;
+            heldItem.Unfreeze();
+        }
+    }
+}

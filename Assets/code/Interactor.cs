@@ -10,7 +10,7 @@ public class Interactor : MonoBehaviour
     public float maxInteractionDistance = 2f;
     public float maxDropDistance = 2f;
 
-    [SerializeField] Transform[] arms;
+    [SerializeField] Arm[] arms;
     Vector3[] originalArmPositions;
     Camera cam;
     InventoryComponent inventory;
@@ -22,7 +22,7 @@ public class Interactor : MonoBehaviour
         originalArmPositions = new Vector3[arms.Length];
         for (int i = 0; i < arms.Length; i++)
         {
-            originalArmPositions[i] = arms[i].localPosition;
+            originalArmPositions[i] = arms[i].transform.localPosition;
         }
     }
 
@@ -35,11 +35,6 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         GetMouseInput();
-        if(Input.GetKeyDown(KeyCode.E)){
-            PickUp();
-        }else if(Input.GetKeyDown(KeyCode.R)){
-            Drop();
-        }
     }
 
     void GetMouseInput()
@@ -47,24 +42,28 @@ public class Interactor : MonoBehaviour
         Vector3 direction = cam.transform.forward;
         if (Input.GetMouseButtonDown(0))
         {
-            arms[0].position += direction;
+            arms[0].transform.position += direction;
+            bool gotItem = PickUp(arms[0]);
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            arms[0].localPosition = originalArmPositions[0];
+            arms[0].Drop();
+            arms[0].transform.localPosition = originalArmPositions[0];
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            arms[1].position += direction;
+            arms[1].transform.position += direction;
+            bool gotItem = PickUp(arms[1]);
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            arms[1].localPosition = originalArmPositions[1];
+            arms[1].Drop();
+            arms[1].transform.localPosition = originalArmPositions[1];
         }
     }
 
-    void PickUp()
+    bool PickUp(Arm arm)
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -76,9 +75,12 @@ public class Interactor : MonoBehaviour
             ItemComponent item = objectHit.GetComponent<ItemComponent>();
             if (item)
             {
-                inventory.Add(item.gameObject);
+                arm.Hold(item);
+                return true;
             }
         }
+
+        return false;
     }
 
     void Drop()
