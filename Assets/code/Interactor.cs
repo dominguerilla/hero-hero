@@ -43,28 +43,47 @@ public class Interactor : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             arms[0].transform.position += direction;
-            bool gotItem = PickUp(arms[0]);
+            if (Input.GetKey(KeyCode.E))
+            {
+                arms[0].Drop();
+            }
+            else
+            {
+                bool gotItem = PickUp(arms[0]);
+            }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            arms[0].Drop();
+            arms[0].DropIfTemporary();
             arms[0].transform.localPosition = originalArmPositions[0];
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             arms[1].transform.position += direction;
-            bool gotItem = PickUp(arms[1]);
+            if (Input.GetKey(KeyCode.E))
+            {
+                arms[1].Drop();
+            }
+            else
+            {
+                bool gotItem = PickUp(arms[1]);
+            }
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            arms[1].Drop();
+            arms[1].DropIfTemporary();
             arms[1].transform.localPosition = originalArmPositions[1];
         }
     }
 
     bool PickUp(Arm arm)
     {
+        if (arm.IsHoldingItem())
+        {
+            return false;
+        }
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

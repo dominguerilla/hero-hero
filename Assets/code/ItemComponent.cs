@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ItemComponent : MonoBehaviour
 {
+    /// <summary>
+    /// Does the player have to hold down Mouse button to keep a grip on this item?
+    /// </summary>
+    public bool isTemporary;
+
     Rigidbody rb;
 
     private void Awake()

@@ -27,6 +27,20 @@ public class Arm : MonoBehaviour
         {
             heldItem.transform.parent = null;
             heldItem.Unfreeze();
+            heldItem = null;
         }
+    }
+
+    public void DropIfTemporary()
+    {
+        if (heldItem && heldItem.isTemporary)
+        {
+            Drop();
+        }
+    }
+
+    public bool IsHoldingItem()
+    {
+        return heldItem != null;
     }
 }
