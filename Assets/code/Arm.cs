@@ -17,7 +17,7 @@ public class Arm : MonoBehaviour
     {
         heldItem = item;
         item.Freeze();
-        item.transform.parent = heldItemPosition;
+        item.transform.SetParent(heldItemPosition);
         item.transform.localPosition = Vector3.zero;
     }
 
@@ -25,7 +25,7 @@ public class Arm : MonoBehaviour
     {
         if (heldItem)
         {
-            heldItem.transform.parent = null;
+            heldItem.transform.SetParent(null);
             heldItem.Unfreeze();
             heldItem = null;
         }
