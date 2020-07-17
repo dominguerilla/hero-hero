@@ -41,4 +41,17 @@ public class Door : MonoBehaviour
             Unlock();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"Trigger collision with {other.gameObject.name}");
+        Arm arm = other.GetComponent<Arm>();
+        if (!arm) return;
+        
+        Key key = other.transform.GetComponentInChildren<Key>();
+        if (key && unlockingKey == key)
+        {
+            Unlock();
+        }
+    }
 }
